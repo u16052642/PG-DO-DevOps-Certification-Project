@@ -6,17 +6,17 @@ pipeline {
        maven "Maven"
     }
  stages {
-      stage('checkout') {
+      stage('SCM') {
            steps {
              
-                git branch: 'master', url: 'https://github.com/devops4solutions/CI-CD-using-Docker.git'
+                git branch: 'master', url: 'https://github.com/u16052642/PG-DO-DevOps-Certification-Project.git'
              
           }
         }
 	 stage('Execute Maven') {
            steps {
              
-                sh 'mvn package'             
+                sh 'mvn clean install package'             
           }
         }
         
@@ -25,18 +25,22 @@ pipeline {
            steps {
               
                 sh 'docker build -t samplewebapp:latest .' 
-                sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:latest'
-                //sh 'docker tag samplewebapp nikhilnidhi/samplewebapp:$BUILD_NUMBER'
+                sh 'docker tag samplewebapp softbayx/samplewebapp:latest'
+                //sh 'docker tag samplewebapp softbayx/samplewebapp:$BUILD_NUMBER'
                
           }
         }
      
   stage('Publish image to Docker Hub') {
           
-            steps {
-        withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
-          sh  'docker push nikhilnidhi/samplewebapp:latest'
-        //  sh  'docker push nikhilnidhi/samplewebapp:$BUILD_NUMBER' 
+           steps {
+        //withDockerRegistry([ credentialsId: "Docker_hub_password", url: "" ]) {
+          //sh  'docker push softbayx/samplewebapp:latest'
+        //  sh  'docker push softbayx/samplewebapp:$BUILD_NUMBER' 
+        withCredentials([string(credentialsId: 'Docker_hub_password', variable: 'VAR_FOR_DOCKERPASS')]) {
+                    sh "sudo docker login -u softbayx -p $VAR_FOR_DOCKERPASS"
+                    }
+                    sh "sudo docker push softbayx/samplewebapp:${BUILD_NUMBER}"
         }
                   
           }
@@ -46,17 +50,17 @@ pipeline {
              
             steps 
 			{
-                sh "docker run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+                sh "sudo docker rm -f samplewebapp"
+                sh "docker run -d -p 8083:8080 --name samplewebapp softbayx/samplewebapp:${BUILD_NUMBER}"
  
             }
         }
- stage('Run Docker container on remote hosts') {
+//stage('Run Docker container on remote hosts') {
              
-            steps {
-                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 nikhilnidhi/samplewebapp"
+   //         steps {
+    //            sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 softbayx/samplewebapp"
  
-            }
-        }
+      //      }
+        //}
     }
 	}
-    
