@@ -9,7 +9,7 @@ pipeline {
       stage('SCM') {
            steps {
              
-                git branch: 'master', url: 'https://github.com/u16052642/PG-DO-DevOps-Certification-Project.git'
+                git branch: 'main', url: 'https://github.com/u16052642/PG-DO-DevOps-Certification-Project.git'
              
           }
         }
@@ -63,4 +63,4 @@ pipeline {
       //      }
         //}
     }
-	}
+}
