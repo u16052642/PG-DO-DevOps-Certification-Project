@@ -25,15 +25,15 @@ pipeline {
            steps {
               
                 sh 'docker build -t samplewebapp:latest .' 
-                sh 'docker tag samplewebapp softbayx/samplewebapp:latest'
-                //sh 'docker tag samplewebapp softbayx/samplewebapp:$BUILD_NUMBER'
+               // sh 'docker tag samplewebapp softbayx/samplewebapp:latest'
+                sh 'docker tag samplewebapp softbayx/samplewebapp:${BUILD_NUMBER}'
                
           }
         }
      
   stage('Publish image to Docker Hub') {
           
-           steps {
+            steps {
         //withDockerRegistry([ credentialsId: "Docker_hub_password", url: "" ]) {
           //sh  'docker push softbayx/samplewebapp:latest'
         //  sh  'docker push softbayx/samplewebapp:$BUILD_NUMBER' 
@@ -44,18 +44,18 @@ pipeline {
         }
                   
           }
-        }
+        
      
       stage('Run Docker container on Jenkins Agent') {
              
             steps 
 			{
-                sh "sudo docker rm -f samplewebapp"
+			    sh "sudo docker rm -f samplewebapp"
                 sh "docker run -d -p 8083:8080 --name samplewebapp softbayx/samplewebapp:${BUILD_NUMBER}"
  
             }
         }
-//stage('Run Docker container on remote hosts') {
+ //stage('Run Docker container on remote hosts') {
              
    //         steps {
     //            sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 softbayx/samplewebapp"
@@ -63,4 +63,4 @@ pipeline {
       //      }
         //}
     }
-}
+	}
