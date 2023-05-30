@@ -1,49 +1,39 @@
-# PG-DO-DevOps-Certification-Project
+PG DO - DevOps Capstone Project
 
-
-Build a Docker Jenkins Pipeline to Implement CI/CD Workflow
-Project 1 
+B-Safe.
+Course-end Project 3
 
 DESCRIPTION
 
-Demonstrate the continuous integration and delivery by building a Docker Jenkins Pipeline.
+Create a CI/CD Pipeline to convert the legacy development process to a DevOps process.
 
-Problem Statement Scenario:
+Background of the problem statement:
+A leading US healthcare company, Aetna, with a large IT structure had a 12-week release cycle and their business was impacted due to the legacy process. To gain
+true business value through faster feature releases, better service quality, and cost optimization, they wanted to adopt agility in their build and release process.
+The objective is to implement iterative deployments, continuous innovation, and automated testing through the assistance of the strategy.
 
-You are a DevOps consultant in AchiStar Technologies. The company decided to implement DevOps to develop and deliver their products. Since it is an Agile organization, it follows Scrum methodology to develop the projects incrementally. You are working with multiple DevOps Engineers to build a Docker Jenkins Pipeline. During the sprint planning, you agreed to take the lead on this project and plan on the requirements, system configurations, and track the efficiency. The tasks you are responsible for:
+Implementation requirements:
 
-Availability of the application and its versions in the GitHub
+Install and configure the Jenkins architecture on AWS instance
+Use the required plugins to run the build creation on a containerized platform
+Create and run the Docker image which will have the application artifacts
+Execute the automated tests on the created build
+Create your private repository and push the Docker image into the repository
+Expose the application on the respective ports so that the user can access the deployed application
+Remove container stack after completing the job
+The following tools must be used:
 
-Track their versions every time a code is committed to the repository
+-EC2
+-Jenkins
+-Docker
+-Git
+The following things to be kept in check:
 
-Create a Docker Jenkins Pipeline that will create a Docker image from the Dockerfile and host it on Docker Hub
-
-It should also pull the Docker image and run it as a Docker container
-
-Build the Docker Jenkins Pipeline to demonstrate the continuous integration and continuous delivery workflow
-
-Company goal is to deliver the product frequently to the production with high-end quality.
-
-You must use the following tools:
-
-Docker: To build the application from a Dockerfile and push it to Docker Hub
-
-Docker Hub: To store the Docker image
-
-GitHub: To store the application code and track its revisions
-
-Git: To connect and push files from the local system to GitHub
-
-Linux (Ubuntu): As a base operating system to start and execute the project
-
-Jenkins: To automate the deployment process during continuous integration
-
-Following requirements should be met:
-
-Document the step-by-step process from the initial installation to the final stage
-
-Track the versions of the code in the GitHub repository
-
-Availability of the application in the Docker Hub
-
-Track the build status of Jenkins for every increment of the project
+You need to document the steps and write the algorithms in them.
+The submission of your Github repository link is mandatory. In order to track your tasks, you need to share the link of the repository.
+Document the step-by-step process starting from creating test cases, the executing it, and recording the results.
+You need to submit the final specification document, which includes:
+Project and tester details
+Concepts used in the project
+Links to the GitHub repository to verify the project completion
+Your conclusion on enhancing the application and defining the USPs (Unique Selling Points)
